@@ -6,11 +6,19 @@
       "use": "@vercel/static"
     },
     {
+      "src": "favicon.svg",
+      "use": "@vercel/static"
+    },
+    {
       "src": "single.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
+    {
+      "src": "/favicon.svg",
+      "dest": "/favicon.svg"
+    },
     {
       "src": "/sanzo-data.js",
       "dest": "/sanzo-data.js"
