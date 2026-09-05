@@ -10,6 +10,14 @@
       "use": "@vercel/static"
     },
     {
+      "src": "icon-*.png",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "manifest.json",
+      "use": "@vercel/static"
+    },
+    {
       "src": "single.js",
       "use": "@vercel/node"
     }
@@ -18,6 +26,14 @@
     {
       "src": "/favicon.svg",
       "dest": "/favicon.svg"
+    },
+    {
+      "src": "/icon-(.*).png",
+      "dest": "/icon-$1.png"
+    },
+    {
+      "src": "/manifest.json",
+      "dest": "/manifest.json"
     },
     {
       "src": "/sanzo-data.js",
