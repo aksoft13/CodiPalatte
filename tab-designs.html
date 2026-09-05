@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tab Design Mockups</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { font-family: 'Inter', sans-serif; box-sizing: border-box; margin: 0; }
+    body { background: #f0ede6; padding: 24px; }
+    h2 { font-size: 13px; color: #888; margin-bottom: 12px; font-weight: 600; }
+    .mockup { background: rgba(255,255,255,0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.6); border-radius: 16px; padding: 16px 20px; margin-bottom: 28px; max-width: 520px; margin-left: auto; margin-right: auto; }
+    .title-row { display: flex; align-items: center; justify-content: center; margin-bottom: 12px; gap: 8px; }
+    .title-row h1 { font-size: 16px; font-weight: 800; color: #1a1a1a; }
+    .title-row span { font-size: 10px; color: #aaa; }
+
+    /* === Design 1: Pill with glow === */
+    .d1 { display: flex; gap: 6px; justify-content: center; background: rgba(0,0,0,0.04); padding: 4px; border-radius: 14px; }
+    .d1 button { border: none; padding: 7px 16px; border-radius: 12px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+    .d1 button.on { background: #1a1a1a; color: #fff; box-shadow: 0 2px 12px rgba(0,0,0,0.25); }
+    .d1 button.off { background: transparent; color: #999; }
+    .d1 button.off:hover { color: #555; background: rgba(255,255,255,0.6); }
+
+    /* === Design 2: Underline accent === */
+    .d2 { display: flex; gap: 0; justify-content: center; border-bottom: 2px solid rgba(0,0,0,0.06); }
+    .d2 button { border: none; background: none; padding: 8px 18px; font-size: 12px; font-weight: 600; cursor: pointer; position: relative; transition: all 0.2s; }
+    .d2 button.on { color: #e94560; }
+    .d2 button.on::after { content: ''; position: absolute; bottom: -2px; left: 20%; right: 20%; height: 3px; background: #e94560; border-radius: 3px; }
+    .d2 button.off { color: #bbb; }
+    .d2 button.off:hover { color: #666; }
+
+    /* === Design 3: Floating chips === */
+    .d3 { display: flex; gap: 8px; justify-content: center; }
+    .d3 button { border: none; padding: 8px 16px; border-radius: 20px; font-size: 11px; font-weight: 700; cursor: pointer; transition: all 0.25s; letter-spacing: 0.3px; }
+    .d3 button.on { background: linear-gradient(135deg, #667eea, #764ba2); color: #fff; box-shadow: 0 4px 14px rgba(102,126,234,0.35); transform: translateY(-1px); }
+    .d3 button.off { background: rgba(255,255,255,0.6); color: #aaa; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+    .d3 button.off:hover { background: #fff; color: #667eea; border-color: #667eea; }
+
+    /* === Design 4: Icon cards === */
+    .d4 { display: flex; gap: 6px; justify-content: center; }
+    .d4 button { border: none; padding: 10px 6px; border-radius: 14px; font-size: 10px; font-weight: 600; cursor: pointer; transition: all 0.2s; min-width: 64px; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+    .d4 button .icon { font-size: 20px; line-height: 1; }
+    .d4 button.on { background: #fff; color: #1a1a1a; box-shadow: 0 2px 10px rgba(0,0,0,0.08); border: 1.5px solid rgba(0,0,0,0.06); }
+    .d4 button.off { background: transparent; color: #ccc; border: 1.5px solid transparent; }
+    .d4 button.off:hover { background: rgba(255,255,255,0.5); color: #888; }
+    .d4 button.on .dot { width: 4px; height: 4px; border-radius: 50%; background: #e94560; }
+    .d4 button.off .dot { width: 4px; height: 4px; border-radius: 50%; background: transparent; }
+
+    /* === Design 5: Segmented glass === */
+    .d5 { display: flex; gap: 2px; justify-content: center; background: rgba(0,0,0,0.06); padding: 3px; border-radius: 16px; backdrop-filter: blur(8px); }
+    .d5 button { border: none; padding: 8px 16px; border-radius: 13px; font-size: 11px; font-weight: 600; cursor: pointer; transition: all 0.25s; display: flex; align-items: center; gap: 5px; }
+    .d5 button .emoji { font-size: 14px; }
+    .d5 button.on { background: rgba(255,255,255,0.9); color: #1a1a1a; box-shadow: 0 1px 6px rgba(0,0,0,0.08); }
+    .d5 button.off { background: transparent; color: #999; }
+    .d5 button.off:hover { background: rgba(255,255,255,0.4); color: #555; }
+  </style>
+</head>
+<body>
+
+<div class="mockup">
+  <h2>1. Pill with Glow</h2>
+  <div class="title-row"><h1>CodiPalette</h1></div>
+  <div class="d1">
+    <button class="on">☁️ 날씨</button>
+    <button class="on">👗 코디</button>
+    <button class="off">📰 뉴스</button>
+    <button class="on">📈 주식</button>
+  </div>
+</div>
+
+<div class="mockup">
+  <h2>2. Underline Accent</h2>
+  <div class="title-row"><h1>CodiPalette</h1></div>
+  <div class="d2">
+    <button class="on">☁️ 날씨</button>
+    <button class="on">👗 코디</button>
+    <button class="off">📰 뉴스</button>
+    <button class="on">📈 주식</button>
+  </div>
+</div>
+
+<div class="mockup">
+  <h2>3. Floating Gradient Chips</h2>
+  <div class="title-row"><h1>CodiPalette</h1></div>
+  <div class="d3">
+    <button class="on">☁️ 날씨</button>
+    <button class="on">👗 코디</button>
+    <button class="off">📰 뉴스</button>
+    <button class="on">📈 주식</button>
+  </div>
+</div>
+
+<div class="mockup">
+  <h2>4. Icon Cards</h2>
+  <div class="title-row"><h1>CodiPalette</h1></div>
+  <div class="d4">
+    <button class="on"><span class="icon">☁️</span>날씨<span class="dot"></span></button>
+    <button class="on"><span class="icon">👗</span>코디<span class="dot"></span></button>
+    <button class="off"><span class="icon">📰</span>뉴스<span class="dot"></span></button>
+    <button class="on"><span class="icon">📈</span>주식<span class="dot"></span></button>
+  </div>
+</div>
+
+<div class="mockup">
+  <h2>5. Segmented Glass</h2>
+  <div class="title-row"><h1>CodiPalette</h1></div>
+  <div class="d5">
+    <button class="on"><span class="emoji">☁️</span>날씨</button>
+    <button class="on"><span class="emoji">👗</span>코디</button>
+    <button class="off"><span class="emoji">📰</span>뉴스</button>
+    <button class="on"><span class="emoji">📈</span>주식</button>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.d1 button, .d2 button, .d3 button, .d4 button, .d5 button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.classList.toggle('on');
+      btn.classList.toggle('off');
+    });
+  });
+</script>
+</body>
+</html>

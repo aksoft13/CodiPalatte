@@ -1,0 +1,24 @@
+{
+  "name": "codipalette-v2",
+  "version": "1.0.0",
+  "description": "CodiPalette v2 - 날씨 기반 코디 추천 + 뉴스/주식 구독형 앱",
+  "main": "single.js",
+  "scripts": {
+    "start": "node single.js",
+    "dev": "nodemon single.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "node-fetch": "^2.7.0",
+    "pg": "^8.11.3",
+    "xml2js": "^0.6.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}

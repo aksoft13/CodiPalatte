@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodiPalette 디자인 시안 5종</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:#0d1117; font-family:-apple-system,'Apple SD Gothic Neo','Noto Sans KR',sans-serif; min-height:100vh; }
+
+    .gallery-header { text-align:center; padding:48px 24px 32px; }
+    .gallery-header h1 { font-size:28px; font-weight:800; color:white; margin-bottom:8px; }
+    .gallery-header p { font-size:14px; color:#6b7280; }
+
+    .concepts-row { display:flex; gap:28px; padding:12px 48px 48px; overflow-x:auto; }
+    .concepts-row::-webkit-scrollbar { height:4px; }
+    .concepts-row::-webkit-scrollbar-track { background:#1f2937; }
+    .concepts-row::-webkit-scrollbar-thumb { background:#374151; border-radius:2px; }
+
+    .concept-wrap { flex-shrink:0; cursor:pointer; }
+    .concept-wrap:hover .phone-outer { transform:translateY(-6px); box-shadow:0 24px 48px rgba(0,0,0,0.5); }
+    .phone-outer { width:260px; height:540px; background:#1c1c1e; border-radius:44px; padding:10px; transition:transform .25s, box-shadow .25s; box-shadow:0 12px 32px rgba(0,0,0,0.4); }
+    .phone-inner { width:100%; height:100%; border-radius:36px; overflow:hidden; position:relative; background:white; }
+    .phone-screen { width:375px; height:780px; transform-origin:top left; transform:scale(0.64); pointer-events:none; }
+
+    .concept-info { margin-top:16px; text-align:center; }
+    .concept-num { font-size:11px; font-weight:700; color:#4b5563; letter-spacing:2px; margin-bottom:4px; }
+    .concept-name { font-size:15px; font-weight:700; color:white; margin-bottom:4px; }
+    .concept-desc { font-size:12px; color:#6b7280; }
+
+    /* Modal */
+    .modal { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:100; align-items:center; justify-content:center; }
+    .modal.open { display:flex; }
+    .modal-phone { width:375px; height:780px; border-radius:40px; overflow:hidden; overflow-y:auto; background:white; position:relative; box-shadow:0 32px 64px rgba(0,0,0,0.6); }
+    .modal-phone::-webkit-scrollbar { display:none; }
+    .modal-close { position:absolute; top:20px; right:20px; width:36px; height:36px; background:rgba(255,255,255,0.15); border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; color:white; font-size:18px; z-index:101; border:none; }
+    .modal-close:hover { background:rgba(255,255,255,0.25); }
+
+    /* hide scrollbar utility */
+    .hs::-webkit-scrollbar { display:none; }
+    .hs { -ms-overflow-style:none; scrollbar-width:none; }
+  </style>
+</head>
+<body>
+
+<div class="gallery-header">
+  <h1>CodiPalette 디자인 시안</h1>
+  <p>클릭해서 전체 화면으로 확인하세요</p>
+</div>
+
+<div class="concepts-row">
+
+  <!-- ───────── CONCEPT 1: 클린 미니멀 ───────── -->
+  <div class="concept-wrap" onclick="openModal(1)">
+    <div class="phone-outer">
+      <div class="phone-inner">
+        <div class="phone-screen" id="screen1">
+          <style>
+            #screen1 * { box-sizing:border-box; margin:0; padding:0; font-family:-apple-system,'Apple SD Gothic Neo',sans-serif; }
+            #screen1 { background:#f9f9f7; }
+            .c1-header { background:white; padding:16px 20px 0; border-bottom:1px solid #f0f0ee; }
+            .c1-title { font-size:22px; font-weight:900; color:#111; }
+            .c1-date { font-size:11px; color:#aaa; margin-top:2px; }
+            .c1-tabs { display:flex; gap:8px; padding:12px 20px; background:white; }
+            .c1-tab { flex:1; text-align:center; padding:10px 0; border-radius:12px; font-size:13px; font-weight:600; }
+            .c1-tab.w { background:#e0f2fe; color:#0284c7; }
+            .c1-tab.c { background:#ffe4e6; color:#e11d48; }
+            .c1-section { margin:12px 16px 0; background:white; border-radius:16px; padding:16px; border-top:3px solid #0ea5e9; }
+            .c1-section.codi { border-top-color:#e94560; }
+            .c1-sec-title { font-size:13px; font-weight:700; color:#111; margin-bottom:12px; }
+            .c1-weather-main { display:flex; align-items:center; gap:12px; margin-bottom:14px; }
+            .c1-temp { font-size:44px; font-weight:300; color:#111; line-height:1; }
+            .c1-weather-info p { font-size:12px; color:#888; margin-top:2px; }
+            .c1-weather-info strong { color:#555; }
+            .c1-week { display:flex; gap:6px; overflow-x:auto; }
+            .c1-week::-webkit-scrollbar { display:none; }
+            .c1-day { flex-shrink:0; text-align:center; padding:8px 10px; border-radius:10px; background:#f9f9f7; }
+            .c1-day.today { background:#e0f2fe; }
+            .c1-day span { display:block; font-size:10px; color:#888; margin-bottom:4px; }
+            .c1-day.today span { color:#0284c7; font-weight:700; }
+            .c1-day em { display:block; font-size:16px; margin-bottom:4px; font-style:normal; }
+            .c1-day strong { display:block; font-size:11px; color:#333; }
+            .c1-day small { display:block; font-size:10px; color:#aaa; }
+            .c1-ctabs { display:flex; gap:6px; margin-bottom:12px; overflow-x:auto; }
+            .c1-ctabs::-webkit-scrollbar { display:none; }
+            .c1-ctab { flex-shrink:0; padding:6px 14px; border-radius:20px; font-size:11px; font-weight:600; background:#f0f0ee; color:#888; }
+            .c1-ctab.on { background:#111; color:white; }
+            .c1-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+            .c1-card { background:#f9f9f7; border-radius:12px; padding:12px; border:1px solid #eee; }
+            .c1-card-name { font-size:11px; font-weight:600; color:#333; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center; }
+            .c1-save { font-size:9px; color:#aaa; background:#eee; padding:2px 7px; border-radius:8px; }
+            .c1-circles { display:flex; justify-content:space-between; }
+            .c1-circle-wrap { text-align:center; }
+            .c1-circle { width:36px; height:36px; border-radius:50%; border:2px solid white; box-shadow:0 2px 6px rgba(0,0,0,0.12); margin:0 auto 4px; }
+            .c1-clabel { font-size:9px; color:#aaa; }
+          </style>
+          <div class="c1-header">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:14px;">
+              <div><div class="c1-title">CodiPalette</div><div class="c1-date">2026년 5월 8일</div></div>
+              <div style="width:36px;height:36px;background:#f0f0ee;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;">🎨</div>
+            </div>
+            <div class="c1-tabs">
+              <div class="c1-tab w">☁️ 날씨</div>
+              <div class="c1-tab c">👗 코디</div>
+            </div>
+          </div>
+          <div class="c1-section">
+            <div class="c1-sec-title">오늘의 날씨</div>
+            <div class="c1-weather-main">
+              <div style="font-size:48px;">☀️</div>
+              <div><div class="c1-temp">16°</div><div class="c1-weather-info"><p>서울 · 맑음</p><p>아침 <strong>12°</strong> · 저녁 <strong>18°</strong></p></div></div>
+            </div>
+            <div class="c1-week">
+              <div class="c1-day today"><span>오늘</span><em>☀️</em><strong>18°</strong><small>12°</small></div>
+              <div class="c1-day"><span>내일</span><em>⛅</em><strong>16°</strong><small>11°</small></div>
+              <div class="c1-day"><span>수</span><em>🌧️</em><strong>13°</strong><small>9°</small></div>
+              <div class="c1-day"><span>목</span><em>🌦️</em><strong>14°</strong><small>8°</small></div>
+              <div class="c1-day"><span>금</span><em>☁️</em><strong>15°</strong><small>10°</small></div>
+            </div>
+          </div>
+          <div class="c1-section codi" style="margin-top:10px;">
+            <div class="c1-ctabs">
+              <div class="c1-ctab on">쉬운 코디</div>
+              <div class="c1-ctab">추천 코디</div>
+              <div class="c1-ctab">자주 쓰는</div>
+              <div class="c1-ctab">핀터레스트</div>
+            </div>
+            <div class="c1-grid">
+              <div class="c1-card"><div class="c1-card-name">클래식 모노<span class="c1-save">+ 저장</span></div><div class="c1-circles"><div class="c1-circle-wrap"><div class="c1-circle" style="background:#9e9e9e;"></div><div class="c1-clabel">외투</div></div><div class="c1-circle-wrap"><div class="c1-circle" style="background:#fff;"></div><div class="c1-clabel">상의</div></div><div class="c1-circle-wrap"><div class="c1-circle" style="background:#212121;"></div><div class="c1-clabel">하의</div></div><div class="c1-circle-wrap"><div class="c1-circle" style="background:#fff;"></div><div class="c1-clabel">신발</div></div></div></div>
+              <div class="c1-card"><div class="c1-card-name">베이지 톤<span class="c1-save">+ 저장</span></div><div class="c1-circles"><div class="c1-circle-wrap"><div class="c1-circle" style="background:#d7c4b0;"></div><div class="c1-clabel">외투</div></div><div class="c1-circle-wrap"><div class="c1-circle" style="background:#f5ede0;"></div><div class="c1-clabel">상의</div></div><div class="c1-circle-wrap"><div class="c1-circle" style="background:#a08060;"></div><div class="c1-clabel">하의</div></div><div class="c1-circle-wrap"><div class="c1-circle" style="background:#d7c4b0;"></div><div class="c1-clabel">신발</div></div></div></div>
+              <div class="c1-card"><div class="c1-card-name">올블랙<span class="c1-save">+ 저장</span></div><div class="c1-circles"><div class="c1-circle-wrap"><div class="c1-circle" style="background:#212121;"></div><div class="c1-clabel">외투</div></div><div class="c1-circle-wrap"><div class="c1-circle" style="background:#424242;"></div><div class="c1-clabel">상의</div></div><div class="c1-circle-wrap"><div class="c1-circle" style="background:#212121;"></div><div class="c1-clabel">하의</div></div><div class="c1-circle-wrap"><div class="c1-circle" style="background:#f5f5f5;"></div><div class="c1-clabel">신발</div></div></div></div>
+              <div class="c1-card"><div class="c1-card-name">화이트 그레이<span class="c1-save">+ 저장</span></div><div class="c1-circles"><div class="c1-circle-wrap"><div class="c1-circle" style="background:#f5f5f5;border:1px solid #eee;"></div><div class="c1-clabel">외투</div></div><div class="c1-circle-wrap"><div class="c1-circle" style="background:#fff;border:1px solid #eee;"></div><div class="c1-clabel">상의</div></div><div class="c1-circle-wrap"><div class="c1-circle" style="background:#bdbdbd;"></div><div class="c1-clabel">하의</div></div><div class="c1-circle-wrap"><div class="c1-circle" style="background:#9e9e9e;"></div><div class="c1-clabel">신발</div></div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="concept-info">
+      <div class="concept-num">01</div>
+      <div class="concept-name">클린 미니멀</div>
+      <div class="concept-desc">화이트 카드 · 여백 중심</div>
+    </div>
+  </div>
+
+  <!-- ───────── CONCEPT 2: 다크 모드 ───────── -->
+  <div class="concept-wrap" onclick="openModal(2)">
+    <div class="phone-outer">
+      <div class="phone-inner" style="background:#0d1117;">
+        <div class="phone-screen" id="screen2">
+          <style>
+            #screen2 * { box-sizing:border-box; margin:0; padding:0; font-family:-apple-system,'Apple SD Gothic Neo',sans-serif; }
+            #screen2 { background:#0d1117; }
+            .c2-header { background:#161b22; padding:16px 20px 0; border-bottom:1px solid #21262d; }
+            .c2-title { font-size:22px; font-weight:900; color:#e6edf3; }
+            .c2-date { font-size:11px; color:#484f58; margin-top:2px; }
+            .c2-tabs { display:flex; gap:8px; padding:12px 20px; background:#161b22; }
+            .c2-tab { flex:1; text-align:center; padding:10px 0; border-radius:12px; font-size:13px; font-weight:600; }
+            .c2-tab.w { background:rgba(14,165,233,0.15); color:#38bdf8; }
+            .c2-tab.c { background:rgba(233,69,96,0.15); color:#f87171; }
+            .c2-section { margin:12px 16px 0; background:#161b22; border-radius:16px; padding:16px; border:1px solid #21262d; }
+            .c2-sec-title { font-size:13px; font-weight:700; color:#e6edf3; margin-bottom:12px; }
+            .c2-weather-main { display:flex; align-items:center; gap:12px; margin-bottom:14px; }
+            .c2-temp { font-size:44px; font-weight:300; color:#e6edf3; line-height:1; }
+            .c2-info p { font-size:12px; color:#484f58; margin-top:2px; }
+            .c2-info strong { color:#8b949e; }
+            .c2-week { display:flex; gap:6px; overflow-x:auto; }
+            .c2-week::-webkit-scrollbar { display:none; }
+            .c2-day { flex-shrink:0; text-align:center; padding:8px 10px; border-radius:10px; background:#21262d; }
+            .c2-day.today { background:rgba(14,165,233,0.15); border:1px solid rgba(14,165,233,0.3); }
+            .c2-day span { display:block; font-size:10px; color:#484f58; margin-bottom:4px; }
+            .c2-day.today span { color:#38bdf8; font-weight:700; }
+            .c2-day em { display:block; font-size:16px; margin-bottom:4px; font-style:normal; }
+            .c2-day strong { display:block; font-size:11px; color:#8b949e; }
+            .c2-ctabs { display:flex; gap:6px; margin-bottom:12px; overflow-x:auto; }
+            .c2-ctabs::-webkit-scrollbar { display:none; }
+            .c2-ctab { flex-shrink:0; padding:6px 14px; border-radius:20px; font-size:11px; font-weight:600; background:#21262d; color:#484f58; }
+            .c2-ctab.on { background:rgba(233,69,96,0.2); color:#f87171; border:1px solid rgba(233,69,96,0.3); }
+            .c2-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+            .c2-card { background:#21262d; border-radius:12px; padding:12px; border:1px solid #30363d; }
+            .c2-card-name { font-size:11px; font-weight:600; color:#8b949e; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center; }
+            .c2-save { font-size:9px; color:#484f58; background:#2d333b; padding:2px 7px; border-radius:8px; }
+            .c2-circles { display:flex; justify-content:space-between; }
+            .c2-cw { text-align:center; }
+            .c2-circle { width:36px; height:36px; border-radius:50%; margin:0 auto 4px; box-shadow:0 0 10px rgba(255,255,255,0.1); }
+            .c2-clabel { font-size:9px; color:#484f58; }
+          </style>
+          <div class="c2-header">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:14px;">
+              <div><div class="c2-title">CodiPalette</div><div class="c2-date">2026년 5월 8일</div></div>
+              <div style="width:36px;height:36px;background:#21262d;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;">🎨</div>
+            </div>
+            <div class="c2-tabs">
+              <div class="c2-tab w">☁️ 날씨</div>
+              <div class="c2-tab c">👗 코디</div>
+            </div>
+          </div>
+          <div class="c2-section">
+            <div class="c2-sec-title">오늘의 날씨</div>
+            <div class="c2-weather-main">
+              <div style="font-size:48px;">☀️</div>
+              <div><div class="c2-temp">16°</div><div class="c2-info"><p>서울 · 맑음</p><p>아침 <strong>12°</strong> · 저녁 <strong>18°</strong></p></div></div>
+            </div>
+            <div class="c2-week">
+              <div class="c2-day today"><span>오늘</span><em>☀️</em><strong>18°</strong></div>
+              <div class="c2-day"><span>내일</span><em>⛅</em><strong>16°</strong></div>
+              <div class="c2-day"><span>수</span><em>🌧️</em><strong>13°</strong></div>
+              <div class="c2-day"><span>목</span><em>🌦️</em><strong>14°</strong></div>
+              <div class="c2-day"><span>금</span><em>☁️</em><strong>15°</strong></div>
+            </div>
+          </div>
+          <div class="c2-section" style="margin-top:10px;">
+            <div class="c2-ctabs">
+              <div class="c2-ctab on">쉬운 코디</div>
+              <div class="c2-ctab">추천 코디</div>
+              <div class="c2-ctab">자주 쓰는</div>
+              <div class="c2-ctab">핀터레스트</div>
+            </div>
+            <div class="c2-grid">
+              <div class="c2-card"><div class="c2-card-name">클래식 모노<span class="c2-save">저장</span></div><div class="c2-circles"><div class="c2-cw"><div class="c2-circle" style="background:#9e9e9e;box-shadow:0 0 8px rgba(158,158,158,0.4);"></div><div class="c2-clabel">외투</div></div><div class="c2-cw"><div class="c2-circle" style="background:#fff;box-shadow:0 0 8px rgba(255,255,255,0.3);"></div><div class="c2-clabel">상의</div></div><div class="c2-cw"><div class="c2-circle" style="background:#212121;box-shadow:0 0 8px rgba(100,100,100,0.4);"></div><div class="c2-clabel">하의</div></div><div class="c2-cw"><div class="c2-circle" style="background:#fff;"></div><div class="c2-clabel">신발</div></div></div></div>
+              <div class="c2-card"><div class="c2-card-name">베이지 톤<span class="c2-save">저장</span></div><div class="c2-circles"><div class="c2-cw"><div class="c2-circle" style="background:#d7c4b0;box-shadow:0 0 8px rgba(215,196,176,0.5);"></div><div class="c2-clabel">외투</div></div><div class="c2-cw"><div class="c2-circle" style="background:#f5ede0;"></div><div class="c2-clabel">상의</div></div><div class="c2-cw"><div class="c2-circle" style="background:#a08060;"></div><div class="c2-clabel">하의</div></div><div class="c2-cw"><div class="c2-circle" style="background:#d7c4b0;"></div><div class="c2-clabel">신발</div></div></div></div>
+              <div class="c2-card"><div class="c2-card-name">올블랙<span class="c2-save">저장</span></div><div class="c2-circles"><div class="c2-cw"><div class="c2-circle" style="background:#212121;"></div><div class="c2-clabel">외투</div></div><div class="c2-cw"><div class="c2-circle" style="background:#424242;"></div><div class="c2-clabel">상의</div></div><div class="c2-cw"><div class="c2-circle" style="background:#212121;"></div><div class="c2-clabel">하의</div></div><div class="c2-cw"><div class="c2-circle" style="background:#f5f5f5;box-shadow:0 0 8px rgba(255,255,255,0.3);"></div><div class="c2-clabel">신발</div></div></div></div>
+              <div class="c2-card"><div class="c2-card-name">봄 스카이<span class="c2-save">저장</span></div><div class="c2-circles"><div class="c2-cw"><div class="c2-circle" style="background:#90caf9;box-shadow:0 0 10px rgba(144,202,249,0.6);"></div><div class="c2-clabel">외투</div></div><div class="c2-cw"><div class="c2-circle" style="background:#fff;"></div><div class="c2-clabel">상의</div></div><div class="c2-cw"><div class="c2-circle" style="background:#1a237e;box-shadow:0 0 10px rgba(26,35,126,0.6);"></div><div class="c2-clabel">하의</div></div><div class="c2-cw"><div class="c2-circle" style="background:#fff;"></div><div class="c2-clabel">신발</div></div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="concept-info">
+      <div class="concept-num">02</div>
+      <div class="concept-name">다크 모드</div>
+      <div class="concept-desc">딥 다크 · 네온 컬러 포인트</div>
+    </div>
+  </div>
+
+  <!-- ───────── CONCEPT 3: 소프트 웜 ───────── -->
+  <div class="concept-wrap" onclick="openModal(3)">
+    <div class="phone-outer">
+      <div class="phone-inner">
+        <div class="phone-screen" id="screen3">
+          <style>
+            #screen3 * { box-sizing:border-box; margin:0; padding:0; font-family:-apple-system,'Apple SD Gothic Neo',sans-serif; }
+            #screen3 { background:linear-gradient(160deg,#fff8f2 0%,#fdf4ff 100%); }
+            .c3-header { padding:20px 20px 0; }
+            .c3-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px; }
+            .c3-title { font-size:22px; font-weight:900; color:#1c0a0a; }
+            .c3-date { font-size:11px; color:#c4a4a4; margin-top:2px; }
+            .c3-icon { width:40px; height:40px; background:linear-gradient(135deg,#f9a8d4,#c084fc); border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:20px; }
+            .c3-tabs { display:flex; gap:8px; margin-bottom:0; }
+            .c3-tab { flex:1; text-align:center; padding:10px 0; border-radius:14px; font-size:13px; font-weight:700; }
+            .c3-tab.w { background:#dbeafe; color:#1d4ed8; }
+            .c3-tab.c { background:#fce7f3; color:#be185d; }
+            .c3-card { margin:14px 16px 0; background:white; border-radius:22px; padding:18px; box-shadow:0 4px 20px rgba(200,100,150,0.08); }
+            .c3-sec-label { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c4a4a4; margin-bottom:10px; }
+            .c3-weather-row { display:flex; align-items:center; gap:14px; margin-bottom:14px; }
+            .c3-temp { font-size:48px; font-weight:200; color:#1c0a0a; line-height:1; }
+            .c3-winfo { font-size:12px; color:#b08080; line-height:1.8; }
+            .c3-week { display:flex; gap:6px; overflow-x:auto; }
+            .c3-week::-webkit-scrollbar { display:none; }
+            .c3-ditem { flex-shrink:0; text-align:center; padding:8px 10px; border-radius:14px; }
+            .c3-ditem.t { background:linear-gradient(135deg,#dbeafe,#ede9fe); }
+            .c3-ditem span { display:block; font-size:10px; color:#b08080; margin-bottom:3px; }
+            .c3-ditem.t span { color:#7c3aed; font-weight:700; }
+            .c3-ditem em { display:block; font-size:16px; font-style:normal; margin-bottom:3px; }
+            .c3-ditem strong { display:block; font-size:11px; color:#555; }
+            .c3-ctabs { display:flex; gap:6px; margin-bottom:14px; overflow-x:auto; }
+            .c3-ctabs::-webkit-scrollbar { display:none; }
+            .c3-ctab { flex-shrink:0; padding:7px 16px; border-radius:20px; font-size:11px; font-weight:700; color:#c4a4a4; background:#fdf4ff; }
+            .c3-ctab.on { background:linear-gradient(135deg,#f9a8d4,#c084fc); color:white; }
+            .c3-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+            .c3-ccard { background:#fff8f2; border-radius:16px; padding:12px; }
+            .c3-cname { font-size:11px; font-weight:700; color:#9a4a6a; margin-bottom:8px; display:flex; justify-content:space-between; }
+            .c3-sbtn { font-size:9px; color:#c4a4a4; background:white; padding:2px 7px; border-radius:8px; }
+            .c3-dots { display:flex; justify-content:space-between; }
+            .c3-dot-w { text-align:center; }
+            .c3-dot { width:36px; height:36px; border-radius:50%; margin:0 auto 4px; box-shadow:0 3px 10px rgba(150,50,100,0.1); }
+            .c3-dlabel { font-size:9px; color:#c4a4a4; }
+          </style>
+          <div class="c3-header">
+            <div class="c3-top">
+              <div><div class="c3-title">CodiPalette</div><div class="c3-date">2026년 5월 8일</div></div>
+              <div class="c3-icon">🎨</div>
+            </div>
+            <div class="c3-tabs">
+              <div class="c3-tab w">☁️ 날씨</div>
+              <div class="c3-tab c">👗 코디</div>
+            </div>
+          </div>
+          <div class="c3-card">
+            <div class="c3-sec-label">Today's Weather</div>
+            <div class="c3-weather-row">
+              <div style="font-size:50px;">☀️</div>
+              <div><div class="c3-temp">16°</div><div class="c3-winfo">서울 · 맑음<br>아침 12° · 저녁 18°</div></div>
+            </div>
+            <div class="c3-week">
+              <div class="c3-ditem t"><span>오늘</span><em>☀️</em><strong>18°</strong></div>
+              <div class="c3-ditem"><span>내일</span><em>⛅</em><strong>16°</strong></div>
+              <div class="c3-ditem"><span>수</span><em>🌧️</em><strong>13°</strong></div>
+              <div class="c3-ditem"><span>목</span><em>🌦️</em><strong>14°</strong></div>
+              <div class="c3-ditem"><span>금</span><em>☁️</em><strong>15°</strong></div>
+            </div>
+          </div>
+          <div class="c3-card" style="margin-top:10px;">
+            <div class="c3-ctabs">
+              <div class="c3-ctab on">쉬운 코디</div>
+              <div class="c3-ctab">추천 코디</div>
+              <div class="c3-ctab">자주 쓰는</div>
+              <div class="c3-ctab">핀터레스트</div>
+            </div>
+            <div class="c3-grid">
+              <div class="c3-ccard"><div class="c3-cname">클래식 모노<span class="c3-sbtn">+ 저장</span></div><div class="c3-dots"><div class="c3-dot-w"><div class="c3-dot" style="background:#9e9e9e;"></div><div class="c3-dlabel">외투</div></div><div class="c3-dot-w"><div class="c3-dot" style="background:#fff;border:1px solid #eee;"></div><div class="c3-dlabel">상의</div></div><div class="c3-dot-w"><div class="c3-dot" style="background:#212121;"></div><div class="c3-dlabel">하의</div></div><div class="c3-dot-w"><div class="c3-dot" style="background:#fff;border:1px solid #eee;"></div><div class="c3-dlabel">신발</div></div></div></div>
+              <div class="c3-ccard"><div class="c3-cname">베이지 톤<span class="c3-sbtn">+ 저장</span></div><div class="c3-dots"><div class="c3-dot-w"><div class="c3-dot" style="background:#d7c4b0;"></div><div class="c3-dlabel">외투</div></div><div class="c3-dot-w"><div class="c3-dot" style="background:#f5ede0;"></div><div class="c3-dlabel">상의</div></div><div class="c3-dot-w"><div class="c3-dot" style="background:#a08060;"></div><div class="c3-dlabel">하의</div></div><div class="c3-dot-w"><div class="c3-dot" style="background:#d7c4b0;"></div><div class="c3-dlabel">신발</div></div></div></div>
+              <div class="c3-ccard"><div class="c3-cname">봄 스카이<span class="c3-sbtn">+ 저장</span></div><div class="c3-dots"><div class="c3-dot-w"><div class="c3-dot" style="background:#90caf9;"></div><div class="c3-dlabel">외투</div></div><div class="c3-dot-w"><div class="c3-dot" style="background:#fff;border:1px solid #eee;"></div><div class="c3-dlabel">상의</div></div><div class="c3-dot-w"><div class="c3-dot" style="background:#1a237e;"></div><div class="c3-dlabel">하의</div></div><div class="c3-dot-w"><div class="c3-dot" style="background:#fff;border:1px solid #eee;"></div><div class="c3-dlabel">신발</div></div></div></div>
+              <div class="c3-ccard"><div class="c3-cname">라벤더<span class="c3-sbtn">+ 저장</span></div><div class="c3-dots"><div class="c3-dot-w"><div class="c3-dot" style="background:#ce93d8;"></div><div class="c3-dlabel">외투</div></div><div class="c3-dot-w"><div class="c3-dot" style="background:#fff;border:1px solid #eee;"></div><div class="c3-dlabel">상의</div></div><div class="c3-dot-w"><div class="c3-dot" style="background:#616161;"></div><div class="c3-dlabel">하의</div></div><div class="c3-dot-w"><div class="c3-dot" style="background:#e0d0ea;"></div><div class="c3-dlabel">신발</div></div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="concept-info">
+      <div class="concept-num">03</div>
+      <div class="concept-name">소프트 웜</div>
+      <div class="concept-desc">그라데이션 배경 · 라운디 카드</div>
+    </div>
+  </div>
+
+  <!-- ───────── CONCEPT 4: 에디토리얼 ───────── -->
+  <div class="concept-wrap" onclick="openModal(4)">
+    <div class="phone-outer">
+      <div class="phone-inner">
+        <div class="phone-screen" id="screen4">
+          <style>
+            #screen4 * { box-sizing:border-box; margin:0; padding:0; font-family:-apple-system,'Apple SD Gothic Neo',sans-serif; }
+            #screen4 { background:white; }
+            .c4-header { padding:20px 20px 14px; border-bottom:3px solid #111; }
+            .c4-top { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:12px; }
+            .c4-title { font-size:26px; font-weight:900; color:#111; letter-spacing:-1px; }
+            .c4-date { font-size:10px; color:#999; letter-spacing:1px; text-transform:uppercase; }
+            .c4-tabs { display:flex; gap:0; }
+            .c4-tab { flex:1; text-align:center; padding:8px 0; font-size:13px; font-weight:700; color:#999; border-bottom:2px solid transparent; }
+            .c4-tab.w { color:#0ea5e9; border-bottom-color:#0ea5e9; }
+            .c4-tab.c { color:#111; border-bottom-color:#111; }
+            .c4-weather { padding:18px 20px; border-bottom:1px solid #f0f0f0; }
+            .c4-w-row { display:flex; align-items:flex-end; gap:8px; margin-bottom:6px; }
+            .c4-big-temp { font-size:64px; font-weight:900; color:#111; line-height:1; letter-spacing:-3px; }
+            .c4-w-meta { padding-bottom:6px; }
+            .c4-w-meta p { font-size:11px; color:#888; }
+            .c4-week-row { display:flex; gap:8px; overflow-x:auto; margin-top:10px; }
+            .c4-week-row::-webkit-scrollbar { display:none; }
+            .c4-wd { flex-shrink:0; display:flex; align-items:center; gap:6px; padding:6px 10px; border-radius:8px; background:#f9f9f9; }
+            .c4-wd.t { background:#f0f9ff; }
+            .c4-wd span { font-size:10px; color:#999; }
+            .c4-wd.t span { color:#0ea5e9; font-weight:700; }
+            .c4-wd em { font-size:14px; font-style:normal; }
+            .c4-wd strong { font-size:11px; color:#333; }
+            .c4-codi { padding:16px 20px; }
+            .c4-ctabs { display:flex; gap:0; border-bottom:1px solid #eee; margin-bottom:14px; overflow-x:auto; }
+            .c4-ctabs::-webkit-scrollbar { display:none; }
+            .c4-ctab { flex-shrink:0; padding:8px 16px; font-size:12px; font-weight:700; color:#aaa; border-bottom:2px solid transparent; }
+            .c4-ctab.on { color:#111; border-bottom-color:#111; }
+            .c4-full-card { border:1px solid #f0f0f0; border-radius:10px; padding:14px; margin-bottom:8px; }
+            .c4-card-row { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
+            .c4-cname { font-size:13px; font-weight:700; color:#111; }
+            .c4-sbtn2 { font-size:10px; color:#aaa; border:1px solid #eee; padding:3px 10px; border-radius:6px; }
+            .c4-bar-row { display:flex; gap:4px; height:28px; border-radius:6px; overflow:hidden; }
+            .c4-bar-seg { flex:1; display:flex; align-items:center; justify-content:center; font-size:8px; color:rgba(255,255,255,0.7); font-weight:700; }
+          </style>
+          <div class="c4-header">
+            <div class="c4-top">
+              <div class="c4-title">Codi<br>Palette</div>
+              <div class="c4-date">2026.05.08</div>
+            </div>
+            <div class="c4-tabs">
+              <div class="c4-tab w">☁️ 날씨</div>
+              <div class="c4-tab c">👗 코디</div>
+            </div>
+          </div>
+          <div class="c4-weather">
+            <div class="c4-w-row">
+              <div style="font-size:40px;">☀️</div>
+              <div class="c4-big-temp">16°</div>
+              <div class="c4-w-meta"><p>서울 · 맑음</p><p>아침 12° / 저녁 18°</p></div>
+            </div>
+            <div class="c4-week-row">
+              <div class="c4-wd t"><span>오늘</span><em>☀️</em><strong>18°</strong></div>
+              <div class="c4-wd"><span>내일</span><em>⛅</em><strong>16°</strong></div>
+              <div class="c4-wd"><span>수</span><em>🌧️</em><strong>13°</strong></div>
+              <div class="c4-wd"><span>목</span><em>🌦️</em><strong>14°</strong></div>
+              <div class="c4-wd"><span>금</span><em>☁️</em><strong>15°</strong></div>
+            </div>
+          </div>
+          <div class="c4-codi">
+            <div class="c4-ctabs">
+              <div class="c4-ctab on">쉬운 코디</div>
+              <div class="c4-ctab">추천</div>
+              <div class="c4-ctab">자주 쓰는</div>
+              <div class="c4-ctab">핀터레스트</div>
+            </div>
+            <div class="c4-full-card">
+              <div class="c4-card-row"><span class="c4-cname">클래식 모노</span><span class="c4-sbtn2">+ 저장</span></div>
+              <div class="c4-bar-row"><div class="c4-bar-seg" style="background:#9e9e9e;">외투</div><div class="c4-bar-seg" style="background:#fff;color:#ccc;border:1px solid #eee;">상의</div><div class="c4-bar-seg" style="background:#212121;">하의</div><div class="c4-bar-seg" style="background:#fff;color:#ccc;border:1px solid #eee;">신발</div></div>
+            </div>
+            <div class="c4-full-card">
+              <div class="c4-card-row"><span class="c4-cname">베이지 톤온톤</span><span class="c4-sbtn2">+ 저장</span></div>
+              <div class="c4-bar-row"><div class="c4-bar-seg" style="background:#d7c4b0;color:#888;">외투</div><div class="c4-bar-seg" style="background:#f5ede0;color:#aaa;">상의</div><div class="c4-bar-seg" style="background:#a08060;">하의</div><div class="c4-bar-seg" style="background:#d7c4b0;color:#888;">신발</div></div>
+            </div>
+            <div class="c4-full-card">
+              <div class="c4-card-row"><span class="c4-cname">봄 스카이</span><span class="c4-sbtn2">+ 저장</span></div>
+              <div class="c4-bar-row"><div class="c4-bar-seg" style="background:#90caf9;color:#555;">외투</div><div class="c4-bar-seg" style="background:#fff;color:#ccc;border:1px solid #eee;">상의</div><div class="c4-bar-seg" style="background:#1a237e;">하의</div><div class="c4-bar-seg" style="background:#fff;color:#ccc;border:1px solid #eee;">신발</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="concept-info">
+      <div class="concept-num">04</div>
+      <div class="concept-name">에디토리얼</div>
+      <div class="concept-desc">볼드 타이포 · 컬러 바 방식</div>
+    </div>
+  </div>
+
+  <!-- ───────── CONCEPT 5: 글래스 프리미엄 ───────── -->
+  <div class="concept-wrap" onclick="openModal(5)">
+    <div class="phone-outer">
+      <div class="phone-inner" style="background:#0f172a;">
+        <div class="phone-screen" id="screen5">
+          <style>
+            #screen5 * { box-sizing:border-box; margin:0; padding:0; font-family:-apple-system,'Apple SD Gothic Neo',sans-serif; }
+            #screen5 { background:linear-gradient(160deg,#0f172a 0%,#1e1b4b 60%,#0f172a 100%); min-height:780px; }
+            .c5-header { padding:20px 20px 0; }
+            .c5-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px; }
+            .c5-title { font-size:22px; font-weight:900; background:linear-gradient(90deg,#a78bfa,#60a5fa); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+            .c5-date { font-size:11px; color:rgba(255,255,255,0.3); margin-top:2px; }
+            .c5-icon-btn { width:38px; height:38px; background:rgba(255,255,255,0.08); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:18px; border:1px solid rgba(255,255,255,0.12); }
+            .c5-tabs { display:flex; gap:8px; }
+            .c5-tab { flex:1; text-align:center; padding:10px 0; border-radius:14px; font-size:13px; font-weight:600; background:rgba(255,255,255,0.06); color:rgba(255,255,255,0.4); border:1px solid rgba(255,255,255,0.08); }
+            .c5-tab.w { background:rgba(99,179,237,0.15); color:#90cdf4; border-color:rgba(99,179,237,0.25); }
+            .c5-tab.c { background:rgba(249,115,148,0.15); color:#fca5b5; border-color:rgba(249,115,148,0.25); }
+            .c5-glass { margin:14px 16px 0; background:rgba(255,255,255,0.06); backdrop-filter:blur(20px); border-radius:22px; padding:18px; border:1px solid rgba(255,255,255,0.1); }
+            .c5-slabel { font-size:10px; font-weight:700; letter-spacing:2px; color:rgba(255,255,255,0.3); margin-bottom:10px; text-transform:uppercase; }
+            .c5-wrow { display:flex; align-items:center; gap:12px; margin-bottom:14px; }
+            .c5-bigtemp { font-size:48px; font-weight:200; color:white; line-height:1; }
+            .c5-winfo { font-size:12px; color:rgba(255,255,255,0.45); line-height:1.8; }
+            .c5-week { display:flex; gap:6px; overflow-x:auto; }
+            .c5-week::-webkit-scrollbar { display:none; }
+            .c5-wd { flex-shrink:0; text-align:center; padding:8px 10px; border-radius:14px; background:rgba(255,255,255,0.05); }
+            .c5-wd.t { background:linear-gradient(135deg,rgba(99,179,237,0.2),rgba(167,139,250,0.2)); border:1px solid rgba(99,179,237,0.2); }
+            .c5-wd span { display:block; font-size:10px; color:rgba(255,255,255,0.3); margin-bottom:3px; }
+            .c5-wd.t span { color:#90cdf4; font-weight:700; }
+            .c5-wd em { display:block; font-size:16px; font-style:normal; margin-bottom:3px; }
+            .c5-wd strong { display:block; font-size:11px; color:rgba(255,255,255,0.6); }
+            .c5-ctabs { display:flex; gap:6px; margin-bottom:14px; overflow-x:auto; }
+            .c5-ctabs::-webkit-scrollbar { display:none; }
+            .c5-ctab { flex-shrink:0; padding:6px 14px; border-radius:20px; font-size:11px; font-weight:600; color:rgba(255,255,255,0.3); background:rgba(255,255,255,0.05); }
+            .c5-ctab.on { background:linear-gradient(135deg,rgba(249,115,148,0.3),rgba(167,139,250,0.3)); color:white; border:1px solid rgba(249,115,148,0.3); }
+            .c5-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+            .c5-card { background:rgba(255,255,255,0.05); border-radius:14px; padding:12px; border:1px solid rgba(255,255,255,0.08); }
+            .c5-cname { font-size:11px; font-weight:600; color:rgba(255,255,255,0.6); margin-bottom:8px; display:flex; justify-content:space-between; }
+            .c5-sbtn { font-size:9px; color:rgba(255,255,255,0.3); background:rgba(255,255,255,0.08); padding:2px 7px; border-radius:8px; }
+            .c5-dots { display:flex; justify-content:space-between; }
+            .c5-dw { text-align:center; }
+            .c5-dot { width:36px; height:36px; border-radius:50%; margin:0 auto 4px; }
+            .c5-dlabel { font-size:9px; color:rgba(255,255,255,0.25); }
+          </style>
+          <div class="c5-header">
+            <div class="c5-top">
+              <div><div class="c5-title">CodiPalette</div><div class="c5-date">2026년 5월 8일</div></div>
+              <div class="c5-icon-btn">🎨</div>
+            </div>
+            <div class="c5-tabs">
+              <div class="c5-tab w">☁️ 날씨</div>
+              <div class="c5-tab c">👗 코디</div>
+            </div>
+          </div>
+          <div class="c5-glass">
+            <div class="c5-slabel">오늘의 날씨</div>
+            <div class="c5-wrow">
+              <div style="font-size:46px;">☀️</div>
+              <div><div class="c5-bigtemp">16°</div><div class="c5-winfo">서울 · 맑음<br>아침 12° · 저녁 18°</div></div>
+            </div>
+            <div class="c5-week">
+              <div class="c5-wd t"><span>오늘</span><em>☀️</em><strong>18°</strong></div>
+              <div class="c5-wd"><span>내일</span><em>⛅</em><strong>16°</strong></div>
+              <div class="c5-wd"><span>수</span><em>🌧️</em><strong>13°</strong></div>
+              <div class="c5-wd"><span>목</span><em>🌦️</em><strong>14°</strong></div>
+              <div class="c5-wd"><span>금</span><em>☁️</em><strong>15°</strong></div>
+            </div>
+          </div>
+          <div class="c5-glass" style="margin-top:10px;">
+            <div class="c5-ctabs">
+              <div class="c5-ctab on">쉬운 코디</div>
+              <div class="c5-ctab">추천 코디</div>
+              <div class="c5-ctab">자주 쓰는</div>
+              <div class="c5-ctab">핀터레스트</div>
+            </div>
+            <div class="c5-grid">
+              <div class="c5-card"><div class="c5-cname">클래식 모노<span class="c5-sbtn">저장</span></div><div class="c5-dots"><div class="c5-dw"><div class="c5-dot" style="background:#9e9e9e;box-shadow:0 0 12px rgba(158,158,158,0.5);"></div><div class="c5-dlabel">외투</div></div><div class="c5-dw"><div class="c5-dot" style="background:#fff;box-shadow:0 0 12px rgba(255,255,255,0.4);"></div><div class="c5-dlabel">상의</div></div><div class="c5-dw"><div class="c5-dot" style="background:#212121;box-shadow:0 0 12px rgba(80,80,80,0.4);"></div><div class="c5-dlabel">하의</div></div><div class="c5-dw"><div class="c5-dot" style="background:#fff;box-shadow:0 0 12px rgba(255,255,255,0.4);"></div><div class="c5-dlabel">신발</div></div></div></div>
+              <div class="c5-card"><div class="c5-cname">봄 스카이<span class="c5-sbtn">저장</span></div><div class="c5-dots"><div class="c5-dw"><div class="c5-dot" style="background:#90caf9;box-shadow:0 0 12px rgba(144,202,249,0.7);"></div><div class="c5-dlabel">외투</div></div><div class="c5-dw"><div class="c5-dot" style="background:#fff;box-shadow:0 0 12px rgba(255,255,255,0.4);"></div><div class="c5-dlabel">상의</div></div><div class="c5-dw"><div class="c5-dot" style="background:#1a237e;box-shadow:0 0 12px rgba(26,35,126,0.7);"></div><div class="c5-dlabel">하의</div></div><div class="c5-dw"><div class="c5-dot" style="background:#fff;box-shadow:0 0 12px rgba(255,255,255,0.4);"></div><div class="c5-dlabel">신발</div></div></div></div>
+              <div class="c5-card"><div class="c5-cname">라벤더<span class="c5-sbtn">저장</span></div><div class="c5-dots"><div class="c5-dw"><div class="c5-dot" style="background:#ce93d8;box-shadow:0 0 12px rgba(206,147,216,0.7);"></div><div class="c5-dlabel">외투</div></div><div class="c5-dw"><div class="c5-dot" style="background:#fff;"></div><div class="c5-dlabel">상의</div></div><div class="c5-dw"><div class="c5-dot" style="background:#616161;"></div><div class="c5-dlabel">하의</div></div><div class="c5-dw"><div class="c5-dot" style="background:#e0d0ea;box-shadow:0 0 12px rgba(200,160,220,0.5);"></div><div class="c5-dlabel">신발</div></div></div></div>
+              <div class="c5-card"><div class="c5-cname">올블랙<span class="c5-sbtn">저장</span></div><div class="c5-dots"><div class="c5-dw"><div class="c5-dot" style="background:#212121;"></div><div class="c5-dlabel">외투</div></div><div class="c5-dw"><div class="c5-dot" style="background:#424242;"></div><div class="c5-dlabel">상의</div></div><div class="c5-dw"><div class="c5-dot" style="background:#212121;"></div><div class="c5-dlabel">하의</div></div><div class="c5-dw"><div class="c5-dot" style="background:#f5f5f5;box-shadow:0 0 12px rgba(255,255,255,0.5);"></div><div class="c5-dlabel">신발</div></div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="concept-info">
+      <div class="concept-num">05</div>
+      <div class="concept-name">글래스 프리미엄</div>
+      <div class="concept-desc">다크 그라데이션 · 유리 카드</div>
+    </div>
+  </div>
+
+</div><!-- /concepts-row -->
+
+<!-- Modal -->
+<div class="modal" id="modal" onclick="closeModal(event)">
+  <button class="modal-close" onclick="document.getElementById('modal').classList.remove('open')">✕</button>
+  <div class="modal-phone" id="modal-phone"></div>
+</div>
+
+<script>
+  const screens = {
+    1: document.getElementById('screen1'),
+    2: document.getElementById('screen2'),
+    3: document.getElementById('screen3'),
+    4: document.getElementById('screen4'),
+    5: document.getElementById('screen5'),
+  };
+  function openModal(n) {
+    const src = screens[n];
+    const mp = document.getElementById('modal-phone');
+    mp.innerHTML = '';
+    const clone = src.cloneNode(true);
+    clone.style.transform = 'none';
+    clone.style.width = '375px';
+    clone.style.height = 'auto';
+    clone.style.minHeight = '780px';
+    mp.appendChild(clone);
+    document.getElementById('modal').classList.add('open');
+  }
+  function closeModal(e) {
+    if (e.target === document.getElementById('modal')) {
+      document.getElementById('modal').classList.remove('open');
+    }
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') document.getElementById('modal').classList.remove('open');
+  });
+</script>
+</body>
+</html>
